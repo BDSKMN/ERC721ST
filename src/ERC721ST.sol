@@ -8,7 +8,7 @@ import {ERC721} from "lib/solady/src/tokens/ERC721.sol";
 /// @notice Abstract ERC721 contract with sub tier-based structure and sequential minting, 
 ///         using extra data packing for efficiency.
 /// @dev    Extends Solady's ERC721 and modifies it to support sequential minting 
-///         while mapping tokens to tiers and their sub-tier via bitwise operations.
+///         while mapping tokens to tiers and their sub-tiers via bitwise operations.
 abstract contract ERC721ST is ERC721 {
     /*//////////////////////////////////////////////////////////////
                                 CONSTANTS
@@ -124,9 +124,9 @@ abstract contract ERC721ST is ERC721 {
 
     /// @dev Returns the tier ID and sub-tier ID associated with a token.
     function subTierId(uint256 tokenId) 
-      public
-      view
-      returns (uint32 tier, uint24 subTier)
+        public
+        view
+        returns (uint32 tier, uint24 subTier)
     {
         tier = uint32(_getExtraData(tokenId));
         subTier = uint24(_getExtraData(tokenId) >> _BITPOS_TIER_ID);
