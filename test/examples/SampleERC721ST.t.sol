@@ -51,7 +51,7 @@ contract SampleERC721TTest is Test {
     function test_TokenURI() public {
         sampleERC721ST.mintSubTier(MINTER_OR_BURNER, 1, 1); // _mintSubTier
         assertEq(sampleERC721ST.tokenURI(0),"ipfs://foobar/1/1/0"); // tokenId #0; tierId #1; subTierId #1
-        sampleERC721ST.safeMintSubTier(MINTER_OR_BURNER, 2, 3); // _safeMintTier
+        sampleERC721ST.safeMintSubTier(MINTER_OR_BURNER, 2, 3); // _safeMintSubTier
         assertEq(sampleERC721ST.tokenURI(1),"ipfs://foobar/2/3/1"); // tokenId #1; tierId #2; subTierId #3
     }
 
@@ -199,7 +199,7 @@ contract SampleERC721TTest is Test {
         sampleERC721ST.mintSubTier(MINTER_OR_BURNER, 1, 0);
     }
 
-    function test_RevertWhen_MintSubTier_TierAndSubTierIdAreZero() public {
+    function test_RevertWhen_MintSubTier_BothTierIdAndSubTierIdAreZero() public {
         vm.prank(MINTER_OR_BURNER);
         vm.expectRevert(TierCanNotBeZero.selector);
         sampleERC721ST.mintSubTier(MINTER_OR_BURNER, 0, 0);
